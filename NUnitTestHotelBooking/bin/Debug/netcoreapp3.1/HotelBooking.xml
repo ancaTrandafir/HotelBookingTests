@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HotelBooking</name>
+    </assembly>
+    <members>
+        <member name="M:HotelBooking.Controllers.HotelsController.GetHotels">
+            <summary>
+             Retrieves a list of all hotels from DB.
+            </summary>
+            <returns>A list of hotels.</returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.HotelsController.GetHotelById(System.Int32)">
+            <summary>
+             Retrieves a specific hotel by id.
+            </summary>
+            <param name="id"></param>
+            <returns>A hotel with a specific id.</returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.HotelsController.GetFilteredHotels(System.String)">
+            <summary>
+            Retrieves filtered hotels by city, descending ordered by rating.
+            </summary>
+            <remarks>
+            Sample URL request:
+               https://localhost:44335/reservations/filter?$city=braila
+            Sample parameter: braila  
+            </remarks>
+            <param name="city"></param>
+            <returns>A list of hotels located in the specified city, descending ordered by rating.</returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.HotelsController.PutHotel(System.Int32,HotelBooking.Hotel)">
+            <summary>
+             Edit any properties of a specific hotel you mention by id.
+            </summary>
+            <param name="id"></param>
+            <param name="hotel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.HotelsController.PostHotel(HotelBooking.Hotel)">
+             <summary>
+              Creates a new hotel.
+             </summary>
+             <param name="hotel"></param>
+             <remarks>
+             Sample request:
+            
+                 POST /hotels
+                  {
+                     "HotelName": "Belvedere",
+                     "City": "Cluj Napoca",
+                     "Capacity": 154,
+                     "Rating": 7.9
+                   }
+            
+             </remarks>
+             <returns>A newly created hotel.</returns>
+             <response code="201">Returns the newly created item</response>
+             <response code="400">If the item is null</response> 
+        </member>
+        <member name="M:HotelBooking.Controllers.ReservationsController.GetReservations">
+            <summary>
+            Retrieves a list of all reservations from DB.
+            </summary>
+            <returns>List of reservations</returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.ReservationsController.GetReservationById(System.Int64)">
+            <summary>
+            Retrieves a specific reservation by id.
+            </summary>
+            <param name="id"></param>
+            <returns>Returns the reservation specified by id.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:HotelBooking.Controllers.ReservationsController.GetFilteredReservations(System.String,System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:HotelBooking.Controllers.ReservationsController.GetUserFilteredReservations(System.String,System.String,System.String)" -->
+        <member name="M:HotelBooking.Controllers.ReservationsController.PutReservation(System.Int64,HotelBooking.Reservation)">
+            <summary>
+            Edit any properties of a specific reservation you mention by id.
+            </summary>
+            <param name="id"></param>
+            <param name="reservation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.ReservationsController.PostReservation(MoviesAPI.ViewModels.ReservationPostModel)">
+             <summary>
+             Creates a new reservation.
+             </summary>
+             <param name="reservation"></param>
+             <remarks>
+             Sample request:
+            
+                 POST /reservations
+                  {
+                     "HotelId": 6,
+                     "UserId": 2,
+                     "Guest": "Anca Trandafir",
+                     "NoOfPersons": 1,
+                     "ArrivalDate": "2020-09-10",
+                     "DepartureDate": "2020-09-12",
+                     "RoomType": "Seaview",
+                     "RoomFare": 250,
+                     "BreakfastIncluded": True
+                   }
+            
+             </remarks>
+             <param name="reservation"></param>
+             <returns>A newly created reservation.</returns>
+             <response code="201">Returns the newly created item</response>
+             <response code="400">If the item is null</response> 
+        </member>
+        <member name="M:HotelBooking.Controllers.ReservationsController.DeleteMovie(System.Int64)">
+            <summary>
+            Deletes the reservation you specify by id.
+            </summary>
+            <param name="id"></param>
+            <returns>Returns the deleted reservation.</returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.ReservationsController.GetFilteredReservations(System.String)">
+            <summary>
+            Retrieves filtered reservations by id of user that added it.
+            </summary>
+            <remarks>
+            Sample URL request:
+               https://localhost:44335/reservations/filter?userId=2
+            Sample parameter: 2  
+            </remarks>
+            <param name="userId"></param>
+            <returns>A list of reservations made by a specific user.</returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.ReviewsController.GetReviews">
+            <summary>
+            Retrieves a list of all reviews from DB.
+            </summary>
+            <returns>List of reviews.</returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.ReviewsController.GetReview(System.Int64)">
+            <summary>
+            Retrieves a specific review by id.
+            </summary>
+            <param name="id"></param>
+            <returns>Returns the  specified review by id.</returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.ReviewsController.PutReview(System.Int32,HotelBooking.Models.Review)">
+            <summary>
+            Edit any properties of a specific review you mention by id.
+            </summary>
+            <param name="id"></param>
+            <param name="review"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HotelBooking.Controllers.ReviewsController.PostReview(HotelBooking.Models.Review)">
+             <summary>
+             Creates a new review.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /review
+                      {
+                        "HotelId": 2,
+                        "UserId": 2,
+                        "Text": "Awesome view to the ocean.",
+                        "Rating": 9
+                       }
+            
+             </remarks>
+             <param name="review"></param>
+             <returns>A newly created review.</returns>
+             <response code="201">Returns the newly created item</response>
+             <response code="400">If the item is null</response> 
+        </member>
+        <member name="M:HotelBooking.Controllers.ReviewsController.DeleteReview(System.Int32)">
+            <summary>
+            Deletes a specific review.
+            </summary>
+            <param name="id"></param>
+            <returns>Returns the deleted review.</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:HotelBooking.Controllers.UsersAtHotelsController.GetCountOfUsersByIDHotel(System.Int64)" -->
+    </members>
+</doc>
