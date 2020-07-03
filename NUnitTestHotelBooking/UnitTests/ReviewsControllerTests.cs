@@ -106,7 +106,7 @@ namespace NUnitTestHotelBooking
                 // Arrange
                 var controller = new ReviewsController(context);
 
-                Review review = new Review
+                Review review1 = new Review
                 {
                     HotelId = 1,
                     UserId = 1,
@@ -114,13 +114,22 @@ namespace NUnitTestHotelBooking
                     Rating = 8
                 };
 
+                Review review2 = new Review
+                {
+                    HotelId = 1,
+                    UserId = 1,
+                    Text = "Cool",
+                    Rating = 10
+                };
+
                 // Act
-                var result = controller.PostReview(review);
-               
+                var result1 = controller.PostReview(review1);
+                var result2 = controller.PostReview(review2);
+
                 // Assert
-                var okResult = result.Should().BeOfType<CreatedAtActionResult>().Subject;
-                var addedReview = okResult.Value.Should().BeAssignableTo<Review>().Subject;
-                addedReview.Text.Should().Be("Cool");
+                Assert.IsNotNull(result1);
+                var okResult = result1.Should().BeOfType<ActionResult<Review>>().Subject;
+                context.Reviews.Count().Should().Be(2);
             }
         }
 
@@ -156,7 +165,7 @@ namespace NUnitTestHotelBooking
                 // Assert
                 Assert.IsEmpty(context.Reviews);
             //    var okResult2 = result2.Should().BeOfType<>().Subject;
-                Assert.Throws<InvalidOperationException>(() => controller.GetReview(100));
+            //    Assert.Throws<InvalidOperationException>(() => controller.GetReview(100));
             }
         }
 
@@ -187,8 +196,6 @@ namespace NUnitTestHotelBooking
                 context.Entry(review).State = EntityState.Detached;
 
                 var actionResult = controller.DeleteReview(3).Result;
-
-              //  Assert.IsInstanceOf(actionResult.GetType(), typeof(System.Web.Http.Results.NotFoundResult));
                 Assert.IsNotEmpty(context.Reviews);
             }
         }
@@ -229,13 +236,12 @@ namespace NUnitTestHotelBooking
                 controller.PostReview(review2);
 
                 // Act
-                Task<ActionResult<IEnumerable<Review>>> result = controller.GetReviews();
+                var result = controller.GetReviews();
 
                 // Assert
                 Assert.IsNotNull(result);
-                var okResult = result.Should().BeOfType<OkObjectResult>().Subject;
-                var reviews = okResult.Value.Should().BeAssignableTo<IEnumerable<Review>>().Subject;
-                reviews.Count().Should().Be(2);
+               var okResult = result.Should().BeOfType<ActionResult<IEnumerable<Review>>>().Subject;
+                okResult.Value.Count().Should().Be(2);
             }
         }
 

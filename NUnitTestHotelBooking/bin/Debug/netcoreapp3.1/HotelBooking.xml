@@ -10,7 +10,7 @@
             </summary>
             <returns>A list of hotels.</returns>
         </member>
-        <member name="M:HotelBooking.Controllers.HotelsController.GetHotelById(System.Int32)">
+        <member name="M:HotelBooking.Controllers.HotelsController.GetHotelById(System.Int64)">
             <summary>
              Retrieves a specific hotel by id.
             </summary>
@@ -29,7 +29,7 @@
             <param name="city"></param>
             <returns>A list of hotels located in the specified city, descending ordered by rating.</returns>
         </member>
-        <member name="M:HotelBooking.Controllers.HotelsController.PutHotel(System.Int32,HotelBooking.Hotel)">
+        <member name="M:HotelBooking.Controllers.HotelsController.PutHotel(System.Int64,HotelBooking.Hotel)">
             <summary>
              Edit any properties of a specific hotel you mention by id.
             </summary>
@@ -140,7 +140,7 @@
             <param name="id"></param>
             <returns>Returns the  specified review by id.</returns>
         </member>
-        <member name="M:HotelBooking.Controllers.ReviewsController.PutReview(System.Int32,HotelBooking.Models.Review)">
+        <member name="M:HotelBooking.Controllers.ReviewsController.PutReview(System.Int64,HotelBooking.Models.Review)">
             <summary>
             Edit any properties of a specific review you mention by id.
             </summary>
@@ -169,7 +169,7 @@
              <response code="201">Returns the newly created item</response>
              <response code="400">If the item is null</response> 
         </member>
-        <member name="M:HotelBooking.Controllers.ReviewsController.DeleteReview(System.Int32)">
+        <member name="M:HotelBooking.Controllers.ReviewsController.DeleteReview(System.Int64)">
             <summary>
             Deletes a specific review.
             </summary>
